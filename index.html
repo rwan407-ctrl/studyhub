@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>期末复习总导航</title>
+<style>
+  html,body{height:100%;margin:0}
+  body{font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;background:#0b1020;color:#e7ecf5;
+       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center}
+  .spin{width:42px;height:42px;border:4px solid #2a3550;border-top-color:#6cc4ff;border-radius:50%;animation:r 1s linear infinite}
+  @keyframes r{to{transform:rotate(360deg)}}
+  h1{font-size:19px;font-weight:600;margin:0}
+  p{color:#9fb0cc;font-size:14px;margin:0;line-height:1.6}
+  a.btn{display:inline-block;margin-top:6px;padding:11px 20px;background:#1c6feb;color:#fff;border-radius:11px;
+        text-decoration:none;font-weight:600;font-size:15px}
+  .err{color:#ffb4b4}
+</style>
+</head>
+<body>
+  <div class="spin" id="spin"></div>
+  <h1 id="msg">正在连接你的复习总导航…</h1>
+  <p id="sub">自动跳转到当前地址,几秒钟</p>
+<script>
+  // Reads the latest public address your PC published to its PRIVATE ntfy topic, then jumps there.
+  // The address can change in the background — this page always finds the current one.
+  var TOPIC = "studyhub-46f25838b8ad9d5a";
+  function fail(){
+    document.getElementById("spin").style.display="none";
+    document.getElementById("msg").innerHTML='<span class="err">暂时连不上</span>';
+    document.getElementById("sub").innerHTML=
+      '请确认电脑开着、联网。地址会在几分钟内自动恢复。<br>'+
+      '<a class="btn" href="javascript:location.reload()">重试</a>';
+  }
+  async function go(){
+    try{
+      var r = await fetch("https://ntfy.sh/"+TOPIC+"/json?poll=1",{cache:"no-store"});
+      var txt = await r.text();
+      var msgs = txt.trim().split("\n").filter(Boolean)
+                    .map(function(l){try{return JSON.parse(l)}catch(e){return null}})
+                    .filter(function(m){return m && m.event==="message"});
+      if(!msgs.length) return fail();
+      var last = msgs[msgs.length-1];
+      var url = ((last.click||last.message||"")+"").trim();
+      // ntfy now carries the full master-hub URL (…/总导航.html), so jump to it as-is.
+      if(url.indexOf("http")===0){ location.replace(url); return; }
+      fail();
+    }catch(e){ fail(); }
+  }
+  go();
+</script>
+</body>
+</html>
