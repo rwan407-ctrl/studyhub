@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>课程复习 · 2026 下半年</title>
+<style>
+  html,body{height:100%;margin:0}
+  body{font-family:-apple-system,system-ui,"Segoe UI","Microsoft YaHei",Roboto,sans-serif;
+       background:#0b1020;color:#e7ecf5;display:flex;flex-direction:column;align-items:center;
+       justify-content:center;gap:20px;padding:26px;text-align:center}
+  .spin{width:46px;height:46px;border:4px solid #2a3550;border-top-color:#6cc4ff;border-radius:50%;
+        animation:r 1s linear infinite}
+  @keyframes r{to{transform:rotate(360deg)}}
+  h1{font-size:22px;font-weight:600;margin:0;line-height:1.5}
+  p{color:#9fb0cc;font-size:16px;margin:0;line-height:1.8}
+  a.btn{display:inline-block;margin-top:10px;padding:14px 26px;background:#1c6feb;color:#fff;
+        border-radius:12px;text-decoration:none;font-weight:600;font-size:17px}
+  .err{color:#ffb4b4}
+  .tip{font-size:14px;color:#7b8aa5;max-width:22em}
+</style>
+</head>
+<body>
+  <div class="spin" id="spin"></div>
+  <h1 id="msg">正在打开这学期的课程复习…</h1>
+  <p id="sub">几秒钟就好，这个链接可以一直存着用</p>
+  <p class="tip" id="tip"></p>
+<script>
+  // 永久书签页：电脑那边的公网地址会变（Cloudflare 快速隧道约一天换一次），
+  // 每次变了电脑都会把新地址发到下面这个 ntfy 频道；这一页就是去读最新地址再跳过去。
+  var TOPIC = "s2hub-5fcfe9de4959b912";
+  function fail(why){
+    document.getElementById("spin").style.display="none";
+    document.getElementById("msg").innerHTML='<span class="err">现在打不开</span>';
+    document.getElementById("sub").innerHTML=
+      '要开着家里那台电脑才能看（视频和讲义都在它上面）。<br>'+
+      '过几分钟再点一次「重试」就行。<br>'+
+      '<a class="btn" href="javascript:location.reload()">重试</a>';
+    document.getElementById("tip").textContent = why || "";
+  }
+  async function go(){
+    try{
+      var r = await fetch("https://ntfy.sh/"+TOPIC+"/json?poll=1",{cache:"no-store"});
+      var txt = await r.text();
+      var msgs = txt.trim().split("\n").filter(Boolean)
+                    .map(function(l){try{return JSON.parse(l)}catch(e){return null}})
+                    .filter(function(m){return m && m.event==="message"});
+      if(!msgs.length) return fail("还没有收到地址");
+      var last = msgs[msgs.length-1];
+      var url = ((last.click||last.message||"")+"").trim();
+      if(url.indexOf("http")!==0) return fail("地址格式不对");
+      // 地址活着才跳，免得让人对着一个打不开的白页发愁
+      location.replace(url);
+    }catch(e){ fail("网络不通"); }
+  }
+  go();
+</script>
+</body>
+</html>
