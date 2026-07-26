@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>课程复习 · 2026 下半年</title>
+<title>S2 总导航</title>
 <style>
   html,body{height:100%;margin:0}
   body{font-family:-apple-system,system-ui,"Segoe UI","Microsoft YaHei",Roboto,sans-serif;
@@ -23,7 +23,7 @@
 </head>
 <body>
   <div class="spin" id="spin"></div>
-  <h1 id="msg">正在打开课程复习…</h1>
+  <h1 id="msg">正在打开四门课总导航…</h1>
   <p id="sub">几秒钟就好，这个链接可以一直存着用</p>
   <p class="tip" id="tip"></p>
 <script>
@@ -34,7 +34,7 @@
     document.getElementById("spin").style.display="none";
     document.getElementById("msg").innerHTML='<span class="err">现在打不开</span>';
     document.getElementById("sub").innerHTML=
-      '要开着家里那台电脑才能看（视频和讲义都在它上面）。<br>'+
+      '电脑没开机 / 隧道还没起来。<br>'+
       '过几分钟再点一次「重试」就行。<br>'+
       '<a class="btn" href="javascript:location.reload()">重试</a>';
     document.getElementById("tip").textContent = why || "";
@@ -51,7 +51,7 @@
       var url = ((last.click||last.message||"")+"").trim();
       if(url.indexOf("http")!==0) return fail("地址格式不对");
       // 地址活着才跳，免得让人对着一个打不开的白页发愁
-      location.replace(url.replace(/\/$/,'') + '/S2_Hub/%E5%A6%88%E5%A6%88.html');
+      location.replace(url.replace(/\/$/,'') + '/S2_Hub/%E6%80%BB%E5%AF%BC%E8%88%AA.html');
     }catch(e){ fail("网络不通"); }
   }
   go();
