@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>课程复习 · 2026 下半年</title>
+
+<!-- ─────────────────────────────────────────────────────────────────────
+     CanaryLens 绊线（GitHub Pages 不给访问日志，所以用 ntfy 当无服务器探针）。
+     ntfy 的 GET 发布接口一被请求就等于留下一条带时间戳的记录。
+       og:image / twitter:image  真人浏览器【永远不取】，只有抓预览图、做快照、
+                                 扫链接的机器才会取 → 命中即机器，零误报
+       隐藏 <img>                任何渲染 HTML 的东西都会取（含妈妈本人）= 基线
+       隐藏 <a>                  只有顺着链接爬的机器会踩
+     真正带 IP / 国家 的证据在家里那台服务器（S2_Hub/serve.py）上。
+     ───────────────────────────────────────────────────────────────────── -->
+<meta property="og:title" content="课程复习">
+<meta property="og:description" content="课程复习页">
+<meta property="og:image" content="https://ntfy.sh/s2canary-b651901f269d4ac1/trigger?title=pages&message=og-image&priority=1">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ntfy.sh/s2canary-b651901f269d4ac1/trigger?title=pages&message=tw-image&priority=1">
+
 <style>
   html,body{height:100%;margin:0}
   body{font-family:-apple-system,system-ui,"Segoe UI","Microsoft YaHei",Roboto,sans-serif;
@@ -19,6 +35,7 @@
         border-radius:12px;text-decoration:none;font-weight:600;font-size:17px}
   .err{color:#ffb4b4}
   .tip{font-size:14px;color:#7b8aa5;max-width:22em}
+  .cl{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden}
 </style>
 </head>
 <body>
@@ -26,10 +43,33 @@
   <h1 id="msg">正在打开课程复习…</h1>
   <p id="sub">几秒钟就好，这个链接可以一直存着用</p>
   <p class="tip" id="tip"></p>
+
+  <a class="cl" href="https://ntfy.sh/s2canary-b651901f269d4ac1/trigger?title=pages&message=bait-link&priority=1"
+     aria-hidden="true" tabindex="-1" rel="nofollow">存档</a>
+  <img class="cl" alt="" width="1" height="1"
+       src="https://ntfy.sh/s2canary-b651901f269d4ac1/trigger?title=pages&message=img-rendered&priority=1">
+
 <script>
   // 永久书签页：电脑那边的公网地址会变（Cloudflare 快速隧道约一天换一次），
   // 每次变了电脑都会把新地址发到下面这个 ntfy 频道；这一页就是去读最新地址再跳过去。
   var TOPIC = "s2hub-5fcfe9de4959b912";
+  var CANARY = "s2canary-b651901f269d4ac1";
+  var VIA = (new URLSearchParams(location.search).get("via") || "").slice(0, 24)
+              .replace(/[^A-Za-z0-9_-]/g, "");
+
+  // 跑得动 JS 的访客再报一条，带上是从哪条渠道点进来的 + 一点点指纹。
+  // 用 <img> 发是为了不受 CORS 影响。
+  try {
+    var ua = navigator.userAgent;
+    var note = "js|via=" + (VIA || "-")
+             + "|wx=" + (/MicroMessenger/i.test(ua) ? "1" : "0")
+             + "|tz=" + ((Intl.DateTimeFormat().resolvedOptions() || {}).timeZone || "-")
+             + "|lang=" + ((navigator.languages || [])[0] || "-")
+             + "|scr=" + screen.width + "x" + screen.height;
+    new Image().src = "https://ntfy.sh/" + CANARY + "/trigger?title=pages&priority=1&message="
+                    + encodeURIComponent(note) + "&t=" + Date.now();
+  } catch (e) {}
+
   function fail(why){
     document.getElementById("spin").style.display="none";
     document.getElementById("msg").innerHTML='<span class="err">现在打不开</span>';
@@ -51,7 +91,8 @@
       var url = ((last.click||last.message||"")+"").trim();
       if(url.indexOf("http")!==0) return fail("地址格式不对");
       // 地址活着才跳，免得让人对着一个打不开的白页发愁
-      location.replace(url.replace(/\/$/,'') + '/S2_Hub/%E5%A6%88%E5%A6%88.html');
+      location.replace(url.replace(/\/$/,'') + '/S2_Hub/%E5%A6%88%E5%A6%88.html'
+                       + (VIA ? '?via=' + encodeURIComponent(VIA) : ''));
     }catch(e){ fail("网络不通"); }
   }
   go();
