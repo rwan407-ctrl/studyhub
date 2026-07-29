@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1018">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta property="og:title" content="2026 S2 作业紧急表">
+<meta property="og:description" content="新西兰时间实时倒计时，打开就能看，不用登录。">
+<title>2026 S2 作业紧急表</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0b1018;--panel:#111925;--panel2:#162131;--line:#26354a;
+  --text:#edf3fb;--muted:#93a4b9;--muted2:#697b91;
+  --red:#ff626d;--orange:#ff9d4d;--yellow:#ffd166;--green:#5ce0a3;
+  --blue:#73a7ff;--purple:#c09cff;--shadow:0 24px 70px rgba(0,0,0,.28)
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;background:
+  radial-gradient(850px 420px at 12% -8%,rgba(46,91,155,.24),transparent 64%),
+  radial-gradient(720px 360px at 95% 2%,rgba(124,57,123,.16),transparent 63%),var(--bg);
+  color:var(--text);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  min-height:100vh;padding:0 0 calc(54px + env(safe-area-inset-bottom));-webkit-text-size-adjust:100%}
+button,input{font:inherit}
+button{color:inherit}
+.wrap{width:min(1120px,calc(100% - 34px));margin:0 auto}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:34px 0 22px}
+.eyebrow{display:flex;align-items:center;gap:8px;color:var(--green);font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.live-dot{width:8px;height:8px;border-radius:99px;background:var(--green);box-shadow:0 0 0 0 rgba(92,224,163,.45);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(92,224,163,0)}100%{box-shadow:0 0 0 0 rgba(92,224,163,0)}}
+h1{font-size:clamp(28px,5vw,46px);line-height:1.13;letter-spacing:-.035em;margin:9px 0 8px;font-weight:780}
+.lead{margin:0;color:var(--muted);font-size:14px}
+.share{border:1px solid #466b9e;background:linear-gradient(180deg,#244b7c,#1c3c66);border-radius:13px;padding:11px 16px;min-height:44px;white-space:nowrap;font-weight:720;cursor:pointer;box-shadow:0 12px 28px rgba(15,52,96,.24)}
+.share:hover{filter:brightness(1.1)}.share:active{transform:translateY(1px)}
+.clockbar{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid rgba(126,157,193,.18);padding:12px 0 17px;color:var(--muted);font-size:13px}
+.clockbar strong{color:#c9d7e8;font-variant-numeric:tabular-nums;font-weight:650;text-align:right}
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;padding:25px 27px;border:1px solid #6d2937;border-radius:21px;background:linear-gradient(125deg,#27151c 0%,#181622 48%,#111b28 100%);box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-120px;top:-170px;background:rgba(255,98,109,.13);filter:blur(4px)}
+.hero-copy,.hero-count{position:relative;z-index:1}
+.kicker{display:flex;align-items:center;gap:9px;margin:0 0 7px;color:#ff9da4;font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.kicker:before{content:"";width:17px;height:2px;background:var(--red);border-radius:2px}
+.hero h2{font-size:clamp(21px,3vw,31px);line-height:1.25;margin:0 0 8px;letter-spacing:-.02em}
+.hero-meta{margin:0;color:#b9c5d5;font-size:14px}
+.hero-note{margin:15px 0 0;padding-top:13px;border-top:1px solid rgba(255,142,151,.18);color:#aab6c5;font-size:13px;max-width:700px}
+.hero-note b{color:var(--yellow)}
+.count-grid{display:grid;grid-template-columns:repeat(4,minmax(58px,74px));gap:8px;align-items:start}
+.count-box{text-align:center;border:1px solid rgba(255,255,255,.1);background:rgba(8,12,20,.46);border-radius:13px;padding:10px 7px 8px;backdrop-filter:blur(7px)}
+.count-box strong{display:block;font:720 clamp(22px,3vw,31px)/1 ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:-.05em}
+.count-box span{display:block;margin-top:7px;color:#8d9aae;font-size:10px;letter-spacing:.15em}
+.hero-weight{text-align:right;margin:10px 2px 0;color:#a8b5c7;font-size:12px}.hero-weight b{color:var(--orange);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 22px}
+.stat{background:rgba(17,25,37,.82);border:1px solid var(--line);border-radius:15px;padding:13px 15px}
+.stat span{display:block;color:var(--muted);font-size:11px;letter-spacing:.08em}.stat strong{display:block;margin-top:2px;font-size:22px;font-variant-numeric:tabular-nums}.stat.urgent strong{color:var(--red)}.stat.done strong{color:var(--green)}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:28px 0 12px}
+.section-head h2{font-size:18px;margin:0;letter-spacing:-.01em}
+.tabs{display:flex;gap:5px;padding:4px;background:#0f1621;border:1px solid #202d3e;border-radius:12px}
+.tab{border:0;background:transparent;color:var(--muted);border-radius:9px;padding:7px 11px;cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap}
+.tab[aria-pressed="true"]{background:#26364a;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.tasks{display:grid;gap:9px}
+.task{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:13px;align-items:center;background:rgba(17,25,37,.88);border:1px solid var(--line);border-left:3px solid #45566c;border-radius:15px;padding:14px 15px;transition:background .16s,border-color .16s,transform .16s,opacity .16s}
+.task:hover{background:#152031;border-color:#38506e;transform:translateY(-1px)}
+.task[data-tone="critical"]{border-left-color:var(--red);background:linear-gradient(90deg,rgba(83,24,34,.42),rgba(17,25,37,.9) 28%)}
+.task[data-tone="soon"]{border-left-color:var(--orange)}.task[data-tone="watch"]{border-left-color:var(--yellow)}
+.task.is-done{opacity:.57;border-left-color:var(--green)}.task.is-done .task-title{text-decoration:line-through;color:#9cabbd}
+.task.is-overdue{border-left-color:#6f7784}.task.is-overdue .remain{color:#8994a4}
+.check{position:relative;display:grid;place-items:center;width:30px;height:38px;cursor:pointer}
+.check input{position:absolute;opacity:0;width:1px;height:1px}
+.check-ui{display:grid;place-items:center;width:23px;height:23px;border-radius:8px;border:1px solid #52657c;background:#0d141e;transition:.15s}
+.check-ui:after{content:"";width:9px;height:5px;border-left:2px solid #092017;border-bottom:2px solid #092017;transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.check input:focus-visible+.check-ui{outline:3px solid rgba(115,167,255,.45);outline-offset:2px}
+.check input:checked+.check-ui{background:var(--green);border-color:var(--green)}.check input:checked+.check-ui:after{opacity:1}
+.task-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.course{display:inline-flex;border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:800;letter-spacing:.03em;white-space:nowrap}
+.CS705{background:#1d3152;color:#91b9ff}.CS769{background:#302349;color:#d0b1ff}.GEOG761{background:#123b31;color:#6ce0b9}.STATS769{background:#432a14;color:#ffbd78}.ACADINT{background:#29303a;color:#aeb9c6}
+.weight{color:#8f9caf;font-size:11px}.weight.heavy{color:var(--orange);font-weight:760}
+.task-title{font-size:15px;line-height:1.35;margin:0;font-weight:720;color:#f2f6fc}
+.task-detail{margin:4px 0 0;color:#8797aa;font-size:12px}.task-detail b{color:var(--yellow);font-weight:700}
+.deadline{display:block;color:#aab8ca;font-size:12px;margin-top:2px}
+.remain{min-width:116px;text-align:right;font:700 13px/1.35 ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums;color:#a9bad0}
+.remain[data-tone="critical"]{color:var(--red)}.remain[data-tone="soon"]{color:var(--orange)}.remain[data-tone="watch"]{color:var(--yellow)}
+.empty{text-align:center;color:var(--muted);border:1px dashed #33445a;border-radius:16px;padding:36px 18px;background:rgba(17,25,37,.5)}
+.details-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
+details{background:rgba(17,25,37,.75);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+summary{cursor:pointer;list-style:none;padding:14px 15px;font-weight:720;color:#c7d4e5;font-size:13px}summary::-webkit-details-marker{display:none}summary:after{content:"＋";float:right;color:#71849d}details[open] summary:after{content:"−"}
+.detail-body{border-top:1px solid var(--line);padding:12px 15px 15px;color:#93a2b5;font-size:12px}.detail-body ul{padding-left:18px;margin:0}.detail-body li+li{margin-top:9px}.detail-body b{color:#e9c96c}.missed{color:#ff8b93!important}
+.foot{margin-top:24px;padding-top:16px;border-top:1px solid #1c2938;color:#66788f;font-size:11.5px;display:flex;justify-content:space-between;gap:20px}.foot b{color:#899cb3}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));z-index:20;transform:translate(-50%,18px);opacity:0;pointer-events:none;background:#eef4fb;color:#152033;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:720;box-shadow:0 16px 42px rgba(0,0,0,.35);transition:.22s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){
+  .wrap{width:min(100% - 24px,660px)}.top{padding:25px 0 16px;display:block}.share{width:100%;margin-top:17px}.clockbar{align-items:flex-start}.clockbar strong{max-width:60%}
+  .hero{grid-template-columns:1fr;padding:20px 18px;gap:20px}.count-grid{grid-template-columns:repeat(4,1fr)}.hero-weight{text-align:left}.stats{grid-template-columns:repeat(2,1fr)}
+  .section-head{display:block}.tabs{margin-top:11px;width:100%}.tab{flex:1;padding-inline:5px}
+  .task{grid-template-columns:auto minmax(0,1fr);align-items:start;padding:13px 12px}.remain{grid-column:2;text-align:left;min-width:0;margin-top:-4px}.details-grid{grid-template-columns:1fr}.foot{display:block}.foot span{display:block;margin-top:5px}
+}
+@media(max-width:390px){.count-box{padding-inline:4px}.count-box strong{font-size:21px}.task{gap:9px}.course{font-size:10px}.lead{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.live-dot{animation:none}.task,.toast{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow"><span class="live-dot" aria-hidden="true"></span><span id="connectionLabel">永久链接 · 不靠电脑</span></div>
+      <h1>2026 S2 作业紧急表</h1>
+      <p class="lead">倒计时每秒走动，截止时间固定显示为新西兰时间。</p>
+    </div>
+    <button class="share" id="shareBtn" type="button">分享给妈妈</button>
+  </header>
+
+  <div class="clockbar">
+    <span>新西兰现在</span>
+    <strong id="nzClock">正在校准时间…</strong>
+  </div>
+
+  <section class="hero" id="hero" aria-labelledby="nextName">
+    <div class="hero-copy">
+      <p class="kicker" id="nextKicker">下一件 · 最紧急</p>
+      <h2 id="nextName">正在计算…</h2>
+      <p class="hero-meta" id="nextMeta">—</p>
+      <p class="hero-note" id="nextNote">—</p>
+    </div>
+    <div class="hero-count" aria-label="距离下一项截止的倒计时">
+      <div class="count-grid">
+        <div class="count-box"><strong id="cdDays">--</strong><span>天</span></div>
+        <div class="count-box"><strong id="cdHours">--</strong><span>小时</span></div>
+        <div class="count-box"><strong id="cdMinutes">--</strong><span>分钟</span></div>
+        <div class="count-box"><strong id="cdSeconds">--</strong><span>秒</span></div>
+      </div>
+      <p class="hero-weight" id="nextWeight">—</p>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="待办概况">
+    <div class="stat"><span>还没完成</span><strong id="pendingCount">0</strong></div>
+    <div class="stat urgent"><span>7 天内</span><strong id="urgentCount">0</strong></div>
+    <div class="stat"><span>已截止</span><strong id="overdueCount">0</strong></div>
+    <div class="stat done"><span>已勾完成</span><strong id="doneCount">0</strong></div>
+  </section>
+
+  <div class="section-head">
+    <h2>全部任务</h2>
+    <div class="tabs" role="group" aria-label="筛选任务">
+      <button class="tab" type="button" data-filter="pending" aria-pressed="true">待完成</button>
+      <button class="tab" type="button" data-filter="done" aria-pressed="false">已完成</button>
+      <button class="tab" type="button" data-filter="all" aria-pressed="false">全部</button>
+    </div>
+  </div>
+  <section class="tasks" id="taskList" aria-live="polite"></section>
+
+  <section class="details-grid" aria-label="补充说明">
+    <details>
+      <summary>已错过：Lab Zero</summary>
+      <div class="detail-body"><b class="missed">STATS 769 · 已锁定，无法补交</b><br>不计分，成绩无损失；但它是环境验证任务。Lab 1 前先确认 VM / RStudio 能 Knit 出 HTML。</div>
+    </details>
+    <details>
+      <summary>Canvas 核实后的 5 项更正</summary>
+      <div class="detail-body"><ul>
+        <li>第四门课是 <b>COMPSCI 705</b>，不是 ENGGEN 730。</li>
+        <li>GEOG 761 是 <b>Labs 40% + Semester Project 60%</b>，没有 Seminar。</li>
+        <li>GEOG 761 lab 课是周二 15:00；周四 15:00 是提交时间。</li>
+        <li>STATS 769 有 8 个计分 lab；Labs 组共 30%，期中 20%，期末 50%。</li>
+        <li>COMPSCI 769：Coding 10% / Essay 30% / 小组研究展示 20% / 期末 40%。</li>
+      </ul></div>
+    </details>
+    <details>
+      <summary>还需要确认的 2 件事</summary>
+      <div class="detail-body"><ul>
+        <li>期中假若为 8/31–9/11，GEOG 761 Lab 4、5 会落在假期里，需再看 Canvas 公告。</li>
+        <li>COMPSCI 705 目前只发布 Week 3 小测；需回忆 Week 1/2 课堂是否考过。</li>
+      </ul></div>
+    </details>
+  </section>
+
+  <footer class="foot">
+    <b>Canvas 数据快照：2026-07-30</b>
+    <span>倒计时会自动更新；课程若在 Canvas 改期，仍需更新这张表。勾选状态只保存在当前设备。</span>
+  </footer>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  "use strict";
+  var PUBLIC_URL="https://rwan407-ctrl.github.io/studyhub/s2/urgent/";
+  var NZ_ZONE="Pacific/Auckland";
+  var STORE_KEY="s2-urgent-done-v1";
+  var TASKS=[
+    ["STATS769","STATS 769","Lab 1","2026-08-03T12:00:00+12:00",3.75,"12:00 截止，<b>13:00 硬锁</b>。先验证 VM / RStudio 环境"],
+    ["CS705","COMPSCI 705","Weekly Quiz · Week 3","2026-08-05T14:05:00+12:00",null,"课堂内小测；Weekly Quizzes 组共 2%"],
+    ["CS705","COMPSCI 705","Submit Group Members and Topic","2026-08-05T23:59:00+12:00",2,"<b>阻塞性</b>：组队未定会卡住后续 Plan Video / Protocol"],
+    ["STATS769","STATS 769","Lab 2","2026-08-10T12:00:00+12:00",3.75,""],
+    ["GEOG761","GEOG 761","Lab 1","2026-08-13T15:00:00+12:00",8,"<b>前置未做</b>：GEE 注册 + Colab 认证（PrepGuide 第 1 页）"],
+    ["STATS769","STATS 769","Lab 3","2026-08-17T12:00:00+12:00",3.75,""],
+    ["GEOG761","GEOG 761","Lab 2","2026-08-20T15:00:00+12:00",8,""],
+    ["CS769","COMPSCI 769","Coding","2026-08-23T23:59:00+12:00",10,"8/2 23:00 解锁"],
+    ["STATS769","STATS 769","Lab 4","2026-08-24T12:00:00+12:00",3.75,"前半学期最后一个 lab"],
+    ["CS705","COMPSCI 705","Project Plan Video","2026-08-25T19:00:00+12:00",4,""],
+    ["CS705","COMPSCI 705","Test 1","2026-08-26T14:00:00+12:00",30,"<b>大头</b>：和 Project Plan Video 只隔一天"],
+    ["GEOG761","GEOG 761","Lab 3","2026-08-27T15:00:00+12:00",8,""],
+    ["GEOG761","GEOG 761","Lab 4","2026-09-03T15:00:00+12:00",8,"疑似落在期中假内，待核实"],
+    ["GEOG761","GEOG 761","Lab 5","2026-09-10T15:00:00+12:00",8,"疑似落在期中假内，待核实"],
+    ["STATS769","STATS 769","Mid-Term Test","2026-09-14T15:00:00+12:00",20,"有 plussage（考差了可被期末顶掉）"],
+    ["CS705","COMPSCI 705","Literature Review Slides · Draft 1","2026-09-15T19:00:00+12:00",5,""],
+    ["CS705","COMPSCI 705","Ethics Training Modules","2026-09-15T23:59:00+12:00",0,"0 分，但通常是做人类实验的前置门槛"],
+    ["CS705","COMPSCI 705","Lit Review Workshop","2026-09-16T15:55:00+12:00",5,""],
+    ["STATS769","STATS 769","Lab 5","2026-09-28T12:00:00+13:00",3.75,"后半学期开始"],
+    ["STATS769","STATS 769","Lab 6","2026-10-05T12:00:00+13:00",3.75,""],
+    ["CS705","COMPSCI 705","Protocol and Implementation","2026-10-06T19:00:00+13:00",6,""],
+    ["CS769","COMPSCI 769","Essay","2026-10-11T23:59:00+13:00",30,"<b>大头</b>：越早动手越好"],
+    ["STATS769","STATS 769","Lab 7","2026-10-12T12:00:00+13:00",3.75,""],
+    ["CS705","COMPSCI 705","Test 2","2026-10-14T14:00:00+13:00",35,"<b>全学期单项最重之一</b>"],
+    ["STATS769","STATS 769","Lab 8","2026-10-19T12:00:00+13:00",3.75,""],
+    ["GEOG761","GEOG 761","Group presentation","2026-10-19T13:00:00+13:00",13.8,"和 STATS 769 Lab 8 同一天"],
+    ["CS769","COMPSCI 769","Group Research & Presentation","2026-10-25T23:59:00+13:00",20,"8/16 解锁"],
+    ["GEOG761","GEOG 761","Project report · Individual","2026-10-28T23:59:00+13:00",46.2,"<b>单项占比最高</b>：接近 GEOG 761 一半成绩"],
+    ["ACADINT","ACADINT A01","Quiz 1–5 · 学术诚信","2026-11-16T23:59:00+13:00",0,"5 个测验同一截止；必修、不计分" ]
+  ];
+  var state={filter:"pending",done:loadDone(),lastNext:""};
+  var dueFormat=new Intl.DateTimeFormat("zh-CN",{timeZone:NZ_ZONE,month:"numeric",day:"numeric",weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false});
+  var clockFormat=new Intl.DateTimeFormat("zh-CN",{timeZone:NZ_ZONE,year:"numeric",month:"2-digit",day:"2-digit",weekday:"short",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false,timeZoneName:"short"});
+
+  function taskId(t){return t[0]+"|"+t[2]+"|"+t[3]}
+  function loadDone(){try{var x=JSON.parse(localStorage.getItem(STORE_KEY)||"{}");return x&&typeof x==="object"?x:{}}catch(e){return {}}}
+  function saveDone(){try{localStorage.setItem(STORE_KEY,JSON.stringify(state.done))}catch(e){}}
+  function esc(s){return String(s).replace(/[&<>\"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]})}
+  function dueText(t){return dueFormat.format(new Date(t[3])).replace("周","周")+"（新西兰）"}
+  function tone(ms){return ms<=86400000?"critical":ms<=604800000?"soon":ms<=1209600000?"watch":"later"}
+  function remainText(ms){
+    if(ms<=0)return "已截止";
+    var sec=Math.floor(ms/1000),d=Math.floor(sec/86400);sec%=86400;
+    var h=Math.floor(sec/3600);sec%=3600;var m=Math.floor(sec/60);var s=sec%60;
+    if(d>0)return d+"天 "+pad(h)+":"+pad(m)+":"+pad(s);
+    return pad(h)+":"+pad(m)+":"+pad(s);
+  }
+  function pad(n){return String(n).padStart(2,"0")}
+  function weightText(w){if(w===null)return "≤ 2%";return String(w)+"%"}
+  function render(){
+    var now=Date.now(),pending=0,urgent=0,overdue=0,done=0;
+    for(var i=0;i<TASKS.length;i++){
+      var isDone=!!state.done[taskId(TASKS[i])],ms=new Date(TASKS[i][3]).getTime()-now;
+      if(isDone)done++;else{pending++;if(ms<=0)overdue++;else if(ms<=604800000)urgent++}
+    }
+    text("pendingCount",pending);text("urgentCount",urgent);text("overdueCount",overdue);text("doneCount",done);
+    var shown=TASKS.filter(function(t){var d=!!state.done[taskId(t)];return state.filter==="all"||(state.filter==="done"?d:!d)});
+    shown.sort(function(a,b){return new Date(a[3])-new Date(b[3])});
+    var box=document.getElementById("taskList");
+    if(!shown.length){box.innerHTML='<div class="empty">'+(state.filter==="done"?"还没有勾选完成的任务。":"这一栏已经清空了。")+'</div>'}
+    else{
+      var html="";
+      for(var j=0;j<shown.length;j++){
+        var t=shown[j],id=taskId(t),isDone=!!state.done[id],ms=new Date(t[3]).getTime()-now,over=ms<=0;
+        var w=t[4],heavy=w!==null&&w>=20;
+        html+='<article class="task'+(isDone?' is-done':'')+(over?' is-overdue':'')+'" data-tone="'+tone(ms)+'">'+
+          '<label class="check"><input type="checkbox" data-task-id="'+encodeURIComponent(id)+'" aria-label="标记 '+esc(t[2])+' 为完成"'+(isDone?' checked':'')+'><span class="check-ui" aria-hidden="true"></span></label>'+
+          '<div class="task-main"><div class="task-top"><span class="course '+t[0]+'">'+esc(t[1])+'</span><span class="weight'+(heavy?' heavy':'')+'">占最终成绩 '+weightText(w)+'</span></div>'+
+          '<p class="task-title">'+esc(t[2])+'</p><span class="deadline">'+esc(dueText(t))+'</span>'+(t[5]?'<p class="task-detail">'+t[5]+'</p>':'')+'</div>'+
+          '<div class="remain" data-due="'+new Date(t[3]).getTime()+'" data-tone="'+tone(ms)+'">'+remainText(ms)+'</div></article>';
+      }
+      box.innerHTML=html;
+    }
+    renderHero(now);
+  }
+  function renderHero(now){
+    var next=null;
+    for(var i=0;i<TASKS.length;i++){
+      var t=TASKS[i],ms=new Date(t[3]).getTime()-now;
+      if(!state.done[taskId(t)]&&ms>0){next=t;break}
+    }
+    if(!next){
+      text("nextKicker","本学期");text("nextName","目前没有未完成的未来任务");text("nextMeta","如果都交了，就好好休息一下。");
+      document.getElementById("nextNote").innerHTML="所有项目都已完成，或者截止时间已经过去。";
+      text("nextWeight","—");setCountdown(0);state.lastNext="";return;
+    }
+    var id=taskId(next);
+    text("nextKicker","下一件 · 最紧急");text("nextName",next[1]+" — "+next[2]);
+    text("nextMeta",dueText(next));document.getElementById("nextNote").innerHTML=next[5]||"按截止时间自动排在最前。";
+    document.getElementById("nextWeight").innerHTML='占最终成绩 <b>'+weightText(next[4])+'</b>';
+    state.lastNext=id;setCountdown(new Date(next[3]).getTime()-now);
+  }
+  function setCountdown(ms){
+    var s=Math.max(0,Math.floor(ms/1000)),d=Math.floor(s/86400);s%=86400;var h=Math.floor(s/3600);s%=3600;var m=Math.floor(s/60);s%=60;
+    text("cdDays",pad(d));text("cdHours",pad(h));text("cdMinutes",pad(m));text("cdSeconds",pad(s));
+  }
+  function tick(){
+    var now=Date.now();
+    text("nzClock",clockFormat.format(new Date(now)));
+    var nodes=document.querySelectorAll("[data-due]");
+    for(var i=0;i<nodes.length;i++){var ms=Number(nodes[i].getAttribute("data-due"))-now;nodes[i].textContent=remainText(ms);nodes[i].setAttribute("data-tone",tone(ms))}
+    if(state.lastNext){
+      for(var j=0;j<TASKS.length;j++)if(taskId(TASKS[j])===state.lastNext){var left=new Date(TASKS[j][3]).getTime()-now;if(left<=0)render();else setCountdown(left);break}
+    }
+  }
+  function text(id,value){document.getElementById(id).textContent=value}
+  function toast(msg){var el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(function(){el.classList.remove("show")},2100)}
+  function copyFallback(value){var a=document.createElement("textarea");a.value=value;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("链接已复制，可以发给妈妈了")}catch(e){toast("请复制这个网址："+value)}document.body.removeChild(a)}
+  function share(){
+    var data={title:"2026 S2 作业紧急表",text:"点开直接看，不用登录：",url:PUBLIC_URL};
+    if(navigator.share){navigator.share(data).catch(function(e){if(!e||e.name!=="AbortError")copyFallback(PUBLIC_URL)});return}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(PUBLIC_URL).then(function(){toast("链接已复制，可以发给妈妈了")},function(){copyFallback(PUBLIC_URL)});return}
+    copyFallback(PUBLIC_URL);
+  }
+  document.getElementById("taskList").addEventListener("change",function(e){
+    var raw=e.target&&e.target.getAttribute("data-task-id");if(!raw)return;var id=decodeURIComponent(raw);
+    if(e.target.checked)state.done[id]=true;else delete state.done[id];saveDone();render();tick();toast(e.target.checked?"已标记完成":"已恢复为待完成");
+  });
+  var tabs=document.querySelectorAll("[data-filter]");
+  for(var i=0;i<tabs.length;i++)tabs[i].addEventListener("click",function(){state.filter=this.getAttribute("data-filter");for(var j=0;j<tabs.length;j++)tabs[j].setAttribute("aria-pressed",tabs[j]===this?"true":"false");render();tick()});
+  document.getElementById("shareBtn").addEventListener("click",share);
+  function network(){if(navigator.onLine){text("connectionLabel","永久链接 · 不靠电脑")}else{text("connectionLabel","离线缓存模式")}}
+  addEventListener("online",network);addEventListener("offline",network);network();render();tick();setInterval(tick,1000);
+  if("serviceWorker" in navigator&&location.protocol==="https:"&&location.hostname==="rwan407-ctrl.github.io")navigator.serviceWorker.register("./sw.js").catch(function(){});
+})();
+</script>
+</body>
+</html>
